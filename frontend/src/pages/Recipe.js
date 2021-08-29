@@ -14,7 +14,7 @@ export default function Recipe() {
             recipeName,
             slug,
             category->,
-            ingredient[] {
+            ingredients[] {
                 quantity,
                 unit,
                 ingredient->{
