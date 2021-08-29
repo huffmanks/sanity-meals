@@ -53,7 +53,7 @@ export default function Recipe() {
                 <div className="my-8">
                     <h3 className="mb-4 text-2xl">Ingredients</h3>
                     
-                    {recipeData && recipeData.ingredient.map((ing) => (
+                    {recipeData && recipeData.ingredients.map((ing) => (
                         <div className="flex items-center p-4 mb-1 bg-gray-100 rounded">
                             <div>
                                 <img className="max-w-full w-8 mr-4 rounded-full" src={ing.ingredient.ingredientImage.asset.url} alt={ing.ingredient.ingredientName} />
