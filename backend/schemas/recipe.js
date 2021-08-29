@@ -32,8 +32,8 @@ export default {
       to: [{ type: "category" }],
     },
     {
-      name: "ingredient",
-      title: "Ingredient",
+      name: "ingredients",
+      title: "Ingredients",
       type: "array",
       of: [
         {
