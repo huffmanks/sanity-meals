@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import sanityClient from '../client'
 import BlockContent from "@sanity/block-content-to-react";
 
@@ -13,7 +13,10 @@ export default function Recipe() {
             _id,
             recipeName,
             slug,
-            category->,
+            category->{
+                categoryName,
+                slug
+            },
             ingredients[] {
                 quantity,
                 unit,
@@ -33,7 +36,7 @@ export default function Recipe() {
                     _id,
                     url
                 }
-            }
+            } 
 
         }`)
         .then((data) => setRecipe(data[0]))
@@ -43,13 +46,15 @@ export default function Recipe() {
     if (!recipeData) return <div>Loading...</div>
 
     return (
-        <main className="container max-w-5xl mx-auto my-12 p-12">
+        <main className="container max-w-5xl mx-auto my-12 p-12 bg-white rounded-lg">
             <section>
                 <h1 className="text-6xl">{recipeData.recipeName}</h1>
                 <div>
                     <img className="w-full max-w-5xl my-4" src={recipeData.recipeImage.asset.url} alt={recipeData.recipeName} />
-                    <div className="inline-block bg-indigo-600 text-white text-xs leading-tight rounded-full py-2 px-3">{recipeData.category.categoryName}</div>
-                </div>
+                    <Link to={"/category/" + recipeData.category.slug.current}>
+                        <div className="inline-block bg-indigo-600 text-white text-xs leading-tight rounded-lg py-2 px-3">{recipeData.category.categoryName}</div>
+                    </Link>              
+               </div>
                 <div className="my-8">
                     <h3 className="mb-4 text-2xl">Ingredients</h3>
                     

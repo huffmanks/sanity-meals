@@ -1,1 +1,5 @@
 @import url("https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css");
+
+body {
+  background-color: rgb(229, 231, 235);
+}

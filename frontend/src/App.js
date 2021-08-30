@@ -14,7 +14,7 @@ function App() {
       <Switch>
         <Route component={Home} path='/' exact />
         <Route component={Recipe} path='/recipe/:slug' />
-        <Route component={Category} path='/category/:id' />
+        <Route component={Category} path='/category/:slug' />
         <Route component={Categories} path='/category' />
       </Switch>
     </Router>

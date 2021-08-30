@@ -10,7 +10,10 @@ export default function Home() {
         sanityClient.fetch(`*[_type == "recipe"]{
             recipeName,
             slug,
-            category,
+            category->{
+                categoryName,
+                slug
+            },
             recipeImage{
                 asset->{
                     _id,
@@ -24,15 +27,24 @@ export default function Home() {
     }, [])
 
     return (
-        <main>
-            {recipesData && recipesData.map((recipe, index) => (
-                <div className="card">
-                    <Link to={"/recipe/" + recipe.slug.current} key={recipe.slug.current}>
-                    <img className="w-full max-w-xs" src={recipe.recipeImage.asset.url} alt={recipe.recipeName} />
-                    <h3>{recipe.recipeName}</h3>
-                    </Link>
-                </div>
-            ))}
+        <main className="container max-w-5xl mx-auto my-12 p-12">
+            <section className="flex flex-wrap items-center justify-center gap-8">
+                {recipesData && recipesData.map((recipe, index) => (
+                    <div className="bg-white rounded-lg">
+                        <Link to={"/recipe/" + recipe.slug.current} key={recipe.slug.current}>
+                        <div>
+                            <img className="w-full max-w-md rounded-lg rounded-b-none" src={recipe.recipeImage.asset.url} alt={recipe.recipeName} />
+                        </div>
+                        </Link>
+                        <div className="flex items-center justify-between p-4">
+                            <h3 className="text-2xl">{recipe.recipeName}</h3>
+                            <Link to={"/category/" + recipe.category.slug.current}>
+                                <div className="inline-block bg-indigo-600 text-white text-xs leading-tight rounded-lg py-2 px-3">{recipe.category.categoryName}</div>
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+            </section>
         </main>
     )
 }
